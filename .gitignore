@@ -477,3 +477,9 @@ $RECYCLE.BIN/
 *.lnk
 /.idea
 /*.ico
+/local.code-workspace
+#/setup_git_sync.ps1
+#/git_change_name.bat
+/desktop.ini
+/.python-version
+/MinimalAPI.Tests/TestResults/
