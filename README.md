@@ -1,5 +1,7 @@
 # MinimalAPI.NET8 升級 .NET 10
-Minimal API .NET 10 的測試專案
+Minimal API .NET 10 + Vue.js 的測試專案
+
+![VUE](./images/VUE.png)
 
 # 建立 Minimal API 專案
 ![Create](./images/MinimalAPI_Create.png)
@@ -19,6 +21,17 @@ dotnet run --project MinimalAPI
 ```
 
 http://localhost:8080
+
+## Vue.js Demo
+造訪首頁 http://localhost:8080 可看到 Vue.js 互動範例：
+
+### 功能列表
+- **Counter** - 簡單計數器
+- **Todo List** - 待辦事項清單
+- **Calculator** - 計算機
+- **Weather** - 天氣展示（隨機）
+- **API Tester** - REST API 測試工具
+- **Counter V2** - 進階計數器（可調整遞增值）
 
 ## Swagger
 - Swagger UI: http://localhost:8080/swagger
@@ -58,6 +71,13 @@ MinimalAPI.Tests/
 - **.NET 10.0**
 - **ASP.NET Core Minimal API**
 - **C#** (啟用 nullable 和 implicit usings)
+- **Vue.js 3** (Composition API)
+- **Swashbuckle** (Swagger/OpenAPI)
+
+### 前端技術
+- Vue 3 (CDN)
+- CSS3 (Flexbox + Grid)
+- REST API 整合
 
 ### 專案結構
 ```
@@ -67,7 +87,9 @@ MinimalAPI.NET8/
 │   ├── MinimalAPI.csproj       # 專案檔
 │   ├── appsettings.json        # 設定檔
 │   ├── wwwroot/                # 靜態檔案
-│   │   └── index.html
+│   │   ├── index.html          # Vue.js 主頁面
+│   │   ├── styles.css          # 樣式表
+│   │   └── app.js              # Vue.js 應用程式
 │   ├── Services/
 │   │   └── WeatherService.cs   # 天氣服務
 │   └── Properties/
@@ -84,5 +106,17 @@ MinimalAPI.NET8/
 - 預設運行於 `http://localhost:8080`
 
 ### 用途
-這是一個學習性質的專案，用於測試和理解 .NET 10 Minimal API 的基本用法。
+這是一個學習性質的專案，用於測試和理解：
+- .NET 10 Minimal API 的基本用法
+- Vue.js 3 前端整合
+- 單元測試與涵蓋率
+- Swagger/OpenAPI 文件
+
+## 開發指令
+
+| 指令 | 說明 |
+|------|------|
+| `dotnet run --project MinimalAPI` | 啟動 API 伺服器 |
+| `dotnet test` | 執行單元測試 |
+| `dotnet test --collect:"XPlat Code Coverage"` | 測試並產生涵蓋率 |
 

@@ -1,52 +1,125 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue.js Example</title>
-    <style>
-        /* 置中顯示 Count */
-        #app {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-    </style>
+    <title>Vue.js Demo - Minimal API</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div id="app">
-        <!-- Your Vue app content will go here -->
-        <Counter></Counter>
+        <h1>Vue.js Demo - Minimal API</h1>
+        
+        <div class="tabs">
+            <button class="tab" :class="{ active: activeTab === 'counter' }" @click="activeTab = 'counter'">Counter</button>
+            <button class="tab" :class="{ active: activeTab === 'todo' }" @click="activeTab = 'todo'">Todo List</button>
+            <button class="tab" :class="{ active: activeTab === 'calculator' }" @click="activeTab = 'calculator'">Calculator</button>
+            <button class="tab" :class="{ active: activeTab === 'weather' }" @click="activeTab = 'weather'">Weather</button>
+            <button class="tab" :class="{ active: activeTab === 'api' }" @click="activeTab = 'api'">API Tester</button>
+            <button class="tab" :class="{ active: activeTab === 'counterV2' }" @click="activeTab = 'counterV2'">Counter V2</button>
+        </div>
+        
+        <!-- Counter -->
+        <div class="card" v-if="activeTab === 'counter'">
+            <h2>Counter Demo</h2>
+            <div class="counter-display">{{ counter }}</div>
+            <div class="counter-buttons">
+                <button class="btn btn-danger" @click="counter--">-</button>
+                <button class="btn btn-primary" @click="counter = 0">Reset</button>
+                <button class="btn btn-success" @click="counter++">+</button>
+            </div>
+        </div>
+        
+        <!-- Todo List -->
+        <div class="card" v-if="activeTab === 'todo'">
+            <h2>Todo List</h2>
+            <input 
+                type="text" 
+                class="todo-input" 
+                v-model="newTodo" 
+                @keyup.enter="addTodo"
+                placeholder="Enter new task..."
+            >
+            <div v-for="(todo, index) in todos" :key="index" class="todo-item" :class="{ completed: todo.completed }">
+                <span>
+                    <input type="checkbox" v-model="todo.completed">
+                    {{ todo.text }}
+                </span>
+                <button class="btn-delete" @click="deleteTodo(index)">Delete</button>
+            </div>
+            <p>Total: {{ todos.length }} | Completed: {{ completedCount }}</p>
+        </div>
+        
+        <!-- Calculator -->
+        <div class="card" v-if="activeTab === 'calculator'">
+            <h2>Calculator</h2>
+            <div class="calculator">
+                <input type="text" v-model="calcDisplay" readonly>
+                <button @click="calcInput('7')">7</button>
+                <button @click="calcInput('8')">8</button>
+                <button @click="calcInput('9')">9</button>
+                <button class="operator" @click="calcInput('/')">/</button>
+                <button @click="calcInput('4')">4</button>
+                <button @click="calcInput('5')">5</button>
+                <button @click="calcInput('6')">6</button>
+                <button class="operator" @click="calcInput('*')">×</button>
+                <button @click="calcInput('1')">1</button>
+                <button @click="calcInput('2')">2</button>
+                <button @click="calcInput('3')">3</button>
+                <button class="operator" @click="calcInput('-')">-</button>
+                <button @click="calcInput('0')">0</button>
+                <button @click="calcInput('.')">.</button>
+                <button class="equals" @click="calcEqual">=</button>
+                <button class="operator" @click="calcInput('+')">+</button>
+            </div>
+        </div>
+        
+        <!-- Weather -->
+        <div class="card" v-if="activeTab === 'weather'">
+            <h2>Weather Demo</h2>
+            <div class="weather-info">
+                <div class="weather-icon">{{ weatherIcon }}</div>
+                <div class="weather-temp">{{ weatherTemp }}°C</div>
+                <div class="weather-desc">{{ weatherDesc }}</div>
+                <button class="btn btn-primary" @click="getWeather">Get Random Weather</button>
+            </div>
+        </div>
+        
+        <!-- API Tester -->
+        <div class="card" v-if="activeTab === 'api'">
+            <h2>API Tester</h2>
+            <div class="api-tester">
+                <input type="text" class="todo-input" v-model="apiUrl" placeholder="Enter API URL...">
+                <div class="counter-buttons" style="margin-bottom: 15px;">
+                    <button class="btn btn-primary" @click="testApi('GET')">GET</button>
+                    <button class="btn btn-success" @click="testApi('POST')">POST</button>
+                    <button class="btn btn-danger" @click="testApi('PUT')">PUT</button>
+                    <button class="btn btn-danger" @click="testApi('DELETE')">DELETE</button>
+                </div>
+                <textarea v-model="apiBody" placeholder="Request Body (JSON)..."></textarea>
+                <div class="api-result">{{ apiResponse || 'Response will appear here...' }}</div>
+            </div>
+        </div>
+        
+        <!-- Counter V2 -->
+        <div class="card" v-if="activeTab === 'counterV2'">
+            <h2>Counter V2 - Reactive</h2>
+            <div class="counter-v2-display">
+                <div class="label">Step: {{ step }}</div>
+                <div class="number">{{ countV2 }}</div>
+                <div class="counter-buttons">
+                    <button class="btn btn-danger" @click="countV2 -= step">-</button>
+                    <input type="number" v-model="step" min="1" max="100" style="width: 80px; padding: 10px; font-size: 1.2rem; text-align: center;">
+                    <button class="btn btn-success" @click="countV2 += step">+</button>
+                </div>
+                <p style="margin-top: 20px;">
+                    <button class="btn btn-primary" @click="countV2 = 0">Reset</button>
+                </p>
+            </div>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.prod.js"></script>
-    <script>
-        // Your Vue app logic will go here
-        const { createApp, ref } = Vue;
-
-        const Counter = {
-            template: `
-        <div>
-            <p>Count: {{ count }}</p>
-            <button @click="increment">Increment</button>
-        </div>
-    `,
-            setup() {
-                const count = ref(0);
-                const increment = () => {
-                    count.value++;
-                };
-                return { count, increment };
-            }
-        };
-
-        createApp({
-            components: { Counter }
-        }).mount('#app');
-    </script>
-
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.tab {
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+.tab:hover {
+    background: rgba(255,255,255,0.3);
+}
+.tab.active {
+    background: white;
+    color: #667eea;
+}
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.counter-display {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #667eea;
+    margin: 20px 0;
+}
+.counter-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+.btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+.btn-primary { background: #667eea; color: white; }
+.btn-danger { background: #ff6b6b; color: white; }
+.btn-success { background: #51cf66; color: white; }
+
+.todo-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.todo-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.todo-item.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+.todo-item button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.btn-delete { background: #ff6b6b; color: white; }
+
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.calculator input {
+    grid-column: span 4;
+    padding: 15px;
+    font-size: 1.5rem;
+    text-align: right;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+.calculator button {
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #f8f9fa;
+    transition: background 0.2s;
+}
+.calculator button:hover {
+    background: #e9ecef;
+}
+.calculator button.equals {
+    grid-row: span 2;
+    background: #667eea;
+    color: white;
+}
+.calculator button.operator {
+    background: #667eea;
+    color: white;
+}
+
+.weather-info {
+    text-align: center;
+}
+.weather-icon {
+    font-size: 4rem;
+    margin: 20px 0;
+}
+.weather-temp {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #667eea;
+}
+.weather-desc {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.api-tester {
+    text-align: center;
+}
+.api-tester textarea {
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: monospace;
+    margin-bottom: 15px;
+}
+.api-result {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.counter-v2-display {
+    text-align: center;
+}
+.counter-v2-display .number {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #667eea;
+    margin: 20px 0;
+}
+.counter-v2-display .label {
+    font-size: 1.2rem;
+    color: #666;
+}
