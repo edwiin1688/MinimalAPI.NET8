@@ -1,4 +1,4 @@
-# MinimalAPI.NET8
+# MinimalAPI.NET8 升級 .NET 10
 Minimal API .NET 10 的測試專案
 
 # 建立 Minimal API 專案
